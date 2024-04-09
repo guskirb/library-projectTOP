@@ -11,13 +11,18 @@
             box-sizing: border-box;
             height: 100vh;
             margin: 0;
+            background-color: blue;
+        }
+
+        body {
+            margin: 0;
         }
 
         #bookShelf {
             display: grid;
             height: 70vh;
             margin: 0;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, 225px);
             grid-template-rows: 1fr 1fr;
             grid-auto-flow: row;
             gap: 45px;
@@ -26,7 +31,8 @@
 
         #bookShelf div {
             background-color: #ffe4c4;
-            height: 295px;
+            height: 300px;
+            width: 225px;
             text-align: center;
             display: grid;
             grid-template-columns: 1fr;
@@ -50,10 +56,17 @@
         #addBook {
             display: flex;
             justify-content: center;
+            background-color: white;
+            margin-bottom: auto;
+            position: fixed;
+            width: 101vw;
+            height: 15vh;
+            bottom: 0;
+            margin: 0;
         }
 
         .read {
-            background-color: #ffe4c4;
+            background-color: #a76d28;
             justify-self: end;
         }
 
@@ -63,13 +76,18 @@
         }
 
         .notRead {
-            background-color: #ffe4c4;
+            background-color: #a76d28;
             justify-self: end;
         }
 
         .notRead::after {
             content: "❌";
             font-size: 16px;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>

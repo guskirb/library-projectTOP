@@ -49,28 +49,8 @@ function addBookToLibrary(title, author, genre, read) {
 
 button.addEventListener("click", function (event) {
     event.preventDefault();
-    if (myLibrary.length === 12) {
-        return;
-    } else {
-        clearShelf();
-        addBookToLibrary(titleValue, authorValue, genreValue, readValue);
-        for (let x = 0; x < myLibrary.length; x++) {
-            bookShelf.appendChild(document.createElement("div"));
-            bookShelf.lastChild.appendChild(document.createElement("button")).classList.add(x);
-            bookShelf.lastChild.appendChild(document.createElement("li")).textContent = myLibrary[x].name;
-            bookShelf.lastChild.appendChild(document.createElement("li")).textContent = myLibrary[x].author;
-            bookShelf.lastChild.appendChild(document.createElement("li")).textContent = myLibrary[x].genre;
-            bookShelf.lastChild.firstChild.addEventListener("click", function () {
-                myLibrary.splice(x, 1);
-                bookShelf.removeChild(bookShelf.lastChild);
-            });
-            if (myLibrary[x].read === true) {
-                bookShelf.lastChild.appendChild(document.createElement("button")).classList.add("read");
-            } else {
-                bookShelf.lastChild.appendChild(document.createElement("button")).classList.add("notRead");
-            };
-        };
-    }
+    addBookToLibrary(titleValue, authorValue, genreValue, readValue);
+    refreshShelf();
 });
 
 function clearShelf() {
@@ -79,6 +59,57 @@ function clearShelf() {
     }
 };
 
-function changeRead() {
+function notRead(x) {
+    myLibrary[x].read = false;
+    refreshShelf();
+}
 
+function read(x) {
+    myLibrary[x].read = true;
+    refreshShelf();
+}
+
+function changeRead(x) {
+    if (myLibrary[x].read === true) {
+        myLibrary[x].read = false;
+    } if (myLibrary[x].read === false) {
+        myLibrary[x].read = true;
+    };
+    refreshShelf();
+};
+
+function refreshShelf() {
+    clearShelf();
+    for (let x = 0; x < myLibrary.length; x++) {
+        bookShelf.appendChild(document.createElement("div"));
+        bookShelf.lastChild.appendChild(document.createElement("button")).classList.add(x);
+        bookShelf.lastChild.appendChild(document.createElement("li")).textContent = myLibrary[x].name;
+        bookShelf.lastChild.appendChild(document.createElement("li")).textContent = myLibrary[x].author;
+        bookShelf.lastChild.appendChild(document.createElement("li")).textContent = myLibrary[x].genre;
+        readButton(x);
+        bookShelf.lastChild.firstChild.addEventListener("click", function () {
+            myLibrary.splice(x, 1);
+            bookShelf.removeChild(bookShelf.lastChild);
+        });
+
+
+    };
+}
+
+function readButton(x) {
+    if (myLibrary[x].read === true) {
+        bookShelf.lastChild.appendChild(document.createElement("button")).setAttribute("id", x);
+        document.getElementById(x).classList.add("read");
+        document.getElementById(x).addEventListener("click", function () {
+            myLibrary[x].read = false;
+            refreshShelf();
+        });
+    } else if (myLibrary[x].read === false) {
+        bookShelf.lastChild.appendChild(document.createElement("button")).setAttribute("id", x)
+        document.getElementById(x).classList.add("notRead");
+        document.getElementById(x).addEventListener("click", function () {
+            myLibrary[x].read = true;
+            refreshShelf();
+        });
+    };
 }
