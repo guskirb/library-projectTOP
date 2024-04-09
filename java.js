@@ -51,6 +51,14 @@ button.addEventListener("click", function (event) {
     event.preventDefault();
     addBookToLibrary(titleValue, authorValue, genreValue, readValue);
     refreshShelf();
+    titleInput.value = "";
+    titleValue = "";
+    authorInput.value = "";
+    authorValue = "";
+    genreInput.value = "";
+    genreValue = "";
+    readInput.checked = false;
+    readValue = false;
 });
 
 function clearShelf() {
