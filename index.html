@@ -6,31 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Library</title>
     <script src="java.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+
     <style>
+        .lora {
+            font-family: "Lora", serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+
         html {
-            box-sizing: border-box;
-            height: 100vh;
             margin: 0;
-            background-color: blue;
+
+            font-family: "Lora", sans-serif;
+            height: 100%;
         }
 
         body {
+            display: block;
             margin: 0;
+            min-height: 100%;
+            margin-bottom: 200px;
+            position: absolute;
+            background-image: linear-gradient(#caffe4, #a0e4ff);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         #bookShelf {
             display: grid;
-            height: 70vh;
+            width: 85vw;
+            min-height: 100%;
             margin: 0;
             grid-template-columns: repeat(auto-fill, 225px);
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: 1fr fr;
             grid-auto-flow: row;
+            grid-auto-rows: 1fr;
             gap: 45px;
-            margin: 50px 150px;
+            margin: 5vw;
+            margin-bottom: 10vw;
+            margin-left: 8vw;
         }
 
         #bookShelf div {
-            background-color: #ffe4c4;
+            background-color: #518566;
+            border-left: solid 5px #345742;
             height: 300px;
             width: 225px;
             text-align: center;
@@ -38,39 +62,74 @@
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 2fr 2fr 2fr;
             list-style: none;
+            font-size: 15px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -4px 0px inset;
+            border-radius: 5px;
+            color: white;
         }
 
-        #bookShelf button {
+        #bookShelf button+li {
+            font-size: 25px;
+            font-weight: 800;
+            text-decoration: underline;
+            background-color: rgb(243, 237, 185);
+            padding: 20px;
+            color: black;
+        }
+
+        #bookShelf button+li+li {
+            font-size: 20px;
+            font-weight: 500;
+            padding-top: 10px;
+        }
+
+        #bookShelf button:first-child {
             height: 25px;
             width: 25px;
-            margin: 15px;
+            margin: 10px;
             justify-self: start;
             border-radius: 50%;
             border: none;
+            margin-bottom: 50px;
+            background-color: #518566;
+            color: #ffffff;
         }
 
         button::after {
             content: "X";
+            font-weight: 700;
+            font-size: 15px;
         }
 
         #addBook {
             display: flex;
             justify-content: center;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.8);
             margin-bottom: auto;
             position: fixed;
-            width: 1000px;
-            height: 140px;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            width: max(48vw, 900px);
+            height: max(6.5vw, 100px);
+            bottom: 30px;
+            right: 50%;
+            transform: translateX(50%);
             margin: 0;
-            border-radius: 40px 40px 0 0;
+            border-radius: 30px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            opacity: 0.6;
+        }
+
+        #addBook:hover {
+            opacity: 1;
         }
 
         .read {
-            background-color: #a76d28;
-            justify-self: end !important;
+            background-color: #518566;
+            justify-self: end;
+            height: 25px;
+            width: 25px;
+            margin: 15px;
+            border-radius: 50%;
+            border: none;
         }
 
         .read::after {
@@ -79,8 +138,13 @@
         }
 
         .notRead {
-            background-color: #a76d28;
-            justify-self: end !important;
+            background-color: #518566;
+            justify-self: end;
+            height: 25px;
+            width: 25px;
+            margin: 15px;
+            border-radius: 50%;
+            border: none;
         }
 
         .notRead::after {
@@ -92,6 +156,9 @@
             display: flex;
             align-items: center;
             gap: 40px;
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 15px;
         }
 
         form li {
@@ -102,9 +169,21 @@
         }
 
         li button {
-            height: 25px;
-            border-radius: 20px;
-            margin-top: 5px;
+            height: 40px;
+            width: 60px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: none;
+            background-color: #08aef0;
+            color: white;
+            font-family: "Lora", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        }
+
+        li button:active {
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
         }
 
         li button::after {
@@ -112,10 +191,17 @@
         }
 
         input {
-            border-radius: 15px;
-            height: 20px;
+            border-radius: 10px;
+            height: 25px;
             padding-left: 10px;
             margin-top: 5px;
+            border: none;
+            outline: none;
+            border: solid 1px rgb(194, 194, 194);
+        }
+
+        input[type='checkbox'] {
+            box-shadow: none;
         }
     </style>
 </head>
@@ -137,11 +223,10 @@
             <li><label for="readInput">Read?</label>
                 <input type="checkbox" name="read" id="readInput">
             </li>
-            <li> <label for="bookButton">Add Book</label>
-                <button id="bookButton"></button>
+            <li> <label for="bookButton"></label>
+                <button id="bookButton">ADD</button>
             </li>
         </form>
-
     </div>
 </body>
 

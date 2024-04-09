@@ -17,15 +17,15 @@ genreInput.onchange = genreVal;
 readInput.onchange = readVal;
 
 function titleVal() {
-    titleValue = titleInput.value;
+    titleValue = titleInput.value.toUpperCase();
 };
 
 function authorVal() {
-    authorValue = authorInput.value;
+    authorValue = authorInput.value.toUpperCase();
 };
 
 function genreVal() {
-    genreValue = genreInput.value;
+    genreValue = genreInput.value.toUpperCase();
 };
 
 function readVal() {
