@@ -203,6 +203,14 @@
         input[type='checkbox'] {
             box-shadow: none;
         }
+
+        .titleText,
+        .authorText,
+        .genreText {
+            position: fixed;
+            bottom: 10px;
+            color: red;
+        }
     </style>
 </head>
 
@@ -210,15 +218,18 @@
     <div id="bookShelf">
     </div>
     <div id="addBook">
-        <form action="">
+        <form action="" novalidate>
             <li><label for="titleInput">Book Title</label>
                 <input type="text" name="title" id="titleInput">
+                <span class="titleText"></span>
             </li>
             <li><label for="authorInput">Author</label>
                 <input type="text" name="author" id="authorInput">
+                <span class="authorText"></span>
             </li>
             <li><label for="genreInput">Genre</label>
                 <input type="text" name="genre" id="genreInput">
+                <span class="genreText"></span>
             </li>
             <li><label for="readInput">Read?</label>
                 <input type="checkbox" name="read" id="readInput">

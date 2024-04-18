@@ -110,16 +110,27 @@ const page = new Render;
 
 button.addEventListener("click", function (event) {
     event.preventDefault();
-    myLibrary.addBookToLibrary(titleValue, authorValue, genreValue, readValue);
-    page.refreshShelf();
-    titleInput.value = "";
-    titleValue = "";
-    authorInput.value = "";
-    authorValue = "";
-    genreInput.value = "";
-    genreValue = "";
-    readInput.checked = false;
-    readValue = false;
+    if (titleInput.value.length === 0) {
+        document.querySelector('.titleText').textContent = "Enter a Book Title";
+    } if (authorInput.value.length === 0) {
+        document.querySelector('.authorText').textContent = "Enter an Author";
+    } if (genreInput.value.length === 0) {
+        document.querySelector('.genreText').textContent = "Enter a Genre";
+    } else {
+        myLibrary.addBookToLibrary(titleValue, authorValue, genreValue, readValue);
+        page.refreshShelf();
+        titleInput.value = "";
+        titleValue = "";
+        authorInput.value = "";
+        authorValue = "";
+        genreInput.value = "";
+        genreValue = "";
+        readInput.checked = false;
+        readValue = false;
+        document.querySelector('.titleText').textContent = "";
+        document.querySelector('.authorText').textContent = "";
+        document.querySelector('.genreText').textContent = "";
+    }
 });
 
 titleInput.onchange = page.titleVal;
